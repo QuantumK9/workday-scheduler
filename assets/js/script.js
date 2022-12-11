@@ -64,13 +64,21 @@ var events = [
   },
 ];
 
+// function that adds input to events array
+function addInputToEvents(inputVal, eventId) {
+  events[eventId - 1].event = inputVal;
+}
+
 // add localstorage to save areas
 
 $("document").ready(function () {
   // console.log("document is ready and jQuery is running!");
 
-  $("#text-area-1").on("submit", function (ev) {
+  $("#form-1").on("submit", function (ev) {
     ev.preventDefault();
-    console.log($(this));
+    var textOneEl = $("#text-area-1").val();
+    console.log(textOneEl);
+    addInputToEvents(textOneEl, 1);
+    console.log(events[0].event);
   });
 });

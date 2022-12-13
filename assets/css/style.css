@@ -24,6 +24,9 @@ textarea {
   /* margin: 0 auto; */
 }
 
+.text-area:focus {
+  outline: none;
+}
 /* custom button reset styles */
 .button {
   padding: 0 !important;

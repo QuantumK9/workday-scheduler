@@ -1,4 +1,52 @@
-// console.log("connected!");
+// state
+var events = [
+  {
+    id: 0,
+    time: "9am",
+    event: "",
+  },
+
+  {
+    id: 1,
+    time: "10am",
+    event: "",
+  },
+  {
+    id: 2,
+    time: "11am",
+    event: "",
+  },
+  {
+    id: 3,
+    time: "12pm",
+    event: "",
+  },
+  {
+    id: 4,
+    time: "1pm",
+    event: "",
+  },
+  {
+    id: 5,
+    time: "2pm",
+    event: "",
+  },
+  {
+    id: 6,
+    time: "3pm",
+    event: "",
+  },
+  {
+    id: 7,
+    time: "4pm",
+    event: "",
+  },
+  {
+    id: 8,
+    time: "5pm",
+    event: "",
+  },
+];
 
 // select all forms
 var form1El = $("#form-1");
@@ -15,55 +63,6 @@ var form9El = $("#form-9");
 // from moment with current time iterate through rows and change color accordingly
 var currentTime = 12; // temporary "time" for testing
 // take text input from textareas (along with id ? )
-
-var events = [
-  {
-    id: 1,
-    time: "9am",
-    event: "",
-  },
-
-  {
-    id: 2,
-    time: "10am",
-    event: "",
-  },
-  {
-    id: 3,
-    time: "11am",
-    event: "",
-  },
-  {
-    id: 4,
-    time: "12pm",
-    event: "",
-  },
-  {
-    id: 5,
-    time: "1pm",
-    event: "",
-  },
-  {
-    id: 6,
-    time: "2pm",
-    event: "",
-  },
-  {
-    id: 7,
-    time: "3pm",
-    event: "",
-  },
-  {
-    id: 8,
-    time: "4pm",
-    event: "",
-  },
-  {
-    id: 9,
-    time: "5pm",
-    event: "",
-  },
-];
 
 //function that will display and change color of each slot based on time comparison with current into grey, red or green
 function addColorClassToElement(element, currentTime) {
@@ -83,12 +82,12 @@ function addingFormInputToEvents(formId, eventsId) {
   textEl = $(formId).val().trim();
   console.log(textEl);
   addInputToEvents(textEl, eventsId);
-  console.log(events[eventsId - 1]);
+  console.log(events[eventsId]);
 }
 
 // function that adds input to events array
 function addInputToEvents(inputVal, eventId) {
-  events[eventId - 1].event = inputVal;
+  events[eventId].event = inputVal;
 }
 // add localstorage to save areas
 
@@ -103,40 +102,41 @@ $("document").ready(function () {
     addColorClassToElement(element, currentTime);
   });
 
+  // listeners
   form1El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-1", 1);
+    addingFormInputToEvents("#text-area-1", 0);
   });
   form2El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-2", 2);
+    addingFormInputToEvents("#text-area-2", 1);
   });
   form3El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-3", 3);
+    addingFormInputToEvents("#text-area-3", 2);
   });
   form4El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-4", 4);
+    addingFormInputToEvents("#text-area-4", 3);
   });
   form5El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-5", 5);
+    addingFormInputToEvents("#text-area-5", 4);
   });
   form6El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-6", 6);
+    addingFormInputToEvents("#text-area-6", 5);
   });
   form7El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-7", 7);
+    addingFormInputToEvents("#text-area-7", 6);
   });
   form8El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-8", 8);
+    addingFormInputToEvents("#text-area-8", 7);
   });
   form9El.on("submit", function (ev) {
     ev.preventDefault();
-    addingFormInputToEvents("#text-area-9", 9);
+    addingFormInputToEvents("#text-area-9", 8);
   });
 });

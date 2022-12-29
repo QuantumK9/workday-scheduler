@@ -48,18 +48,6 @@ var events = [
   },
 ];
 
-// // select all forms
-// var form1El = $("#form-1");
-// var form2El = $("#form-2");
-// var form3El = $("#form-3");
-// var form4El = $("#form-4");
-// var form5El = $("#form-5");
-// var form6El = $("#form-6");
-// var form7El = $("#form-7");
-// var form8El = $("#form-8");
-// var form9El = $("#form-9");
-// add day at top with moment.js
-
 // from moment with current time iterate through rows and change color accordingly
 var currentTime = 12; // temporary "time" for testing
 // take text input from textareas (along with id ? )
@@ -82,9 +70,18 @@ function addInputToEvents(inputVal, eventId) {
   events[eventId].event = inputVal;
 }
 // add localstorage to save areas
+function addEventsToLocalStorage(eventsArray) {
+  localStorage.setItem("events", JSON.stringify(eventsArray));
+}
 
 $("document").ready(function () {
   // console.log("document is ready and jQuery is running!");
+  var storedEvents = JSON.parse(localStorage.getItem("events"));
+  if (storedEvents !== null) {
+    events = storedEvents;
+  }
+  // renderEvents(); doesn't exist yet
+
   // let inputTdElements = $(".input-table-data");
   let inputTdElements = document.querySelectorAll(".input-table-data");
 
@@ -102,6 +99,7 @@ $(document).on("click", ".saveBtn", function (ev) {
   var inputId = parseInt($(this).attr("data-id"));
   var inputTime = parseInt($(this).attr("data-time"));
   addInputToEvents(formInput, inputId);
+  addEventsToLocalStorage(events);
   // console.log(`data-id: ${inputId} and ${typeof inputId}`);
   // console.log(`data-time: ${inputTime}`);
   // getCityForecastAndDisplay(city);

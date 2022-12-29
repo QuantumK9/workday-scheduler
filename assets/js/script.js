@@ -48,16 +48,16 @@ var events = [
   },
 ];
 
-// select all forms
-var form1El = $("#form-1");
-var form2El = $("#form-2");
-var form3El = $("#form-3");
-var form4El = $("#form-4");
-var form5El = $("#form-5");
-var form6El = $("#form-6");
-var form7El = $("#form-7");
-var form8El = $("#form-8");
-var form9El = $("#form-9");
+// // select all forms
+// var form1El = $("#form-1");
+// var form2El = $("#form-2");
+// var form3El = $("#form-3");
+// var form4El = $("#form-4");
+// var form5El = $("#form-5");
+// var form6El = $("#form-6");
+// var form7El = $("#form-7");
+// var form8El = $("#form-8");
+// var form9El = $("#form-9");
 // add day at top with moment.js
 
 // from moment with current time iterate through rows and change color accordingly
@@ -76,15 +76,7 @@ function addColorClassToElement(element, currentTime) {
   }
 }
 
-// function that takes input from form and adds it to events array
-
-function addingFormInputToEvents(formId, eventsId) {
-  textEl = $(formId).val().trim();
-  console.log(textEl);
-  addInputToEvents(textEl, eventsId);
-  console.log(events[eventsId]);
-}
-
+//
 // function that adds input to events array
 function addInputToEvents(inputVal, eventId) {
   events[eventId].event = inputVal;
@@ -101,54 +93,16 @@ $("document").ready(function () {
   inputTdElements.forEach(function (element) {
     addColorClassToElement(element, currentTime);
   });
-
-  // listeners
-  // form1El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-1", 0);
-  // });
-  // form2El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-2", 1);
-  // });
-  // form3El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-3", 2);
-  // });
-  // form4El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-4", 3);
-  // });
-  // form5El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-5", 4);
-  // });
-  // form6El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-6", 5);
-  // });
-  // form7El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-7", 6);
-  // });
-  // form8El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-8", 7);
-  // });
-  // form9El.on("submit", function (ev) {
-  //   ev.preventDefault();
-  //   addingFormInputToEvents("#text-area-9", 8);
-  // });
 });
 
 $(document).on("click", ".saveBtn", function (ev) {
   ev.preventDefault();
-  var formInput = $(this)[0].form.childNodes[1].value;
-  console.log(formInput);
+  var formInput = $(this)[0].form.childNodes[1].value.trim();
+  // console.log(formInput);
   var inputId = parseInt($(this).attr("data-id"));
   var inputTime = parseInt($(this).attr("data-time"));
-
-  console.log(`data-id: ${inputId} and ${typeof inputId}`);
-  console.log(`data-time: ${inputTime}`);
+  addInputToEvents(formInput, inputId);
+  // console.log(`data-id: ${inputId} and ${typeof inputId}`);
+  // console.log(`data-time: ${inputTime}`);
   // getCityForecastAndDisplay(city);
 });

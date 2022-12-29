@@ -51,8 +51,53 @@ var events = [
 // getting date and time in the right formats from moment.js
 var currentDateDisplay = moment().format("dddd Do MMMM YYYY");
 var currentTime = moment().format("H");
-// console.log(`Date: ${currentDateDisplay} and time: ${currentTime}`);
 
+// on page load
+$("document").ready(function () {
+  // get events from state
+  var storedEvents = JSON.parse(localStorage.getItem("events"));
+  if (storedEvents !== null) {
+    events = storedEvents;
+  }
+  // render events and the date
+  renderEvents(events);
+  renderDate(currentDateDisplay);
+
+  // get an array of al input elements
+  let inputTdElements = document.querySelectorAll(".input-table-data");
+
+  inputTdElements.forEach(function (element) {
+    addColorClassToElement(element, currentTime);
+  });
+});
+
+// event listener on all save buttons
+$(document).on("click", ".saveBtn", function (ev) {
+  ev.preventDefault();
+  var formInput = $(this)[0].form.childNodes[1].value.trim();
+
+  var inputId = parseInt($(this).attr("data-id"));
+  var inputTime = parseInt($(this).attr("data-time"));
+  addInputToEvents(formInput, inputId);
+  addEventsToLocalStorage(events);
+  renderEvents(events);
+});
+
+// helper functions
+function renderEvents(eventsArray) {
+  eventsArray.map((event) => {
+    var strEventId = event.id.toString();
+    $(`#${strEventId}`).val("");
+    $(`#${strEventId}`).val(event.event);
+    // console.log(event.id);
+    console.log(strEventId);
+    console.log(event.event);
+  });
+}
+
+function renderDate(date) {
+  $("#currentDay").text(date);
+}
 //function that will display and change color of each slot based on time comparison with current into grey, red or green
 function addColorClassToElement(element, currentTime) {
   let slotTimeNumber = parseInt(element.attributes["data-time"].value);
@@ -73,47 +118,4 @@ function addInputToEvents(inputVal, eventId) {
 // add localstorage to save areas
 function addEventsToLocalStorage(eventsArray) {
   localStorage.setItem("events", JSON.stringify(eventsArray));
-}
-
-$("document").ready(function () {
-  // console.log("document is ready and jQuery is running!");
-  var storedEvents = JSON.parse(localStorage.getItem("events"));
-  if (storedEvents !== null) {
-    events = storedEvents;
-  }
-  renderEvents(events);
-
-  // let inputTdElements = $(".input-table-data");
-  let inputTdElements = document.querySelectorAll(".input-table-data");
-
-  // console.log(inputTdElements);
-
-  inputTdElements.forEach(function (element) {
-    addColorClassToElement(element, currentTime);
-  });
-});
-
-$(document).on("click", ".saveBtn", function (ev) {
-  ev.preventDefault();
-  var formInput = $(this)[0].form.childNodes[1].value.trim();
-  // console.log(formInput);
-  var inputId = parseInt($(this).attr("data-id"));
-  var inputTime = parseInt($(this).attr("data-time"));
-  addInputToEvents(formInput, inputId);
-  addEventsToLocalStorage(events);
-  renderEvents(events);
-  // console.log(`data-id: ${inputId} and ${typeof inputId}`);
-  // console.log(`data-time: ${inputTime}`);
-  // getCityForecastAndDisplay(city);
-});
-
-function renderEvents(eventsArray) {
-  eventsArray.map((event) => {
-    var strEventId = event.id.toString();
-    $(`#${strEventId}`).val("");
-    $(`#${strEventId}`).val(event.event);
-    // console.log(event.id);
-    console.log(strEventId);
-    console.log(event.event);
-  });
 }

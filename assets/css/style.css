@@ -12,6 +12,28 @@ textarea {
   border-left: 1px solid black;
   padding: 10px;
 }
+.text-area {
+  background: transparent;
+  border: none;
+  resize: none;
+  color: #000000;
+  border-left: 1px solid black;
+  padding: 10px;
+  /* custom */
+  width: 100%;
+  /* margin: 0 auto; */
+}
+
+.text-area:focus {
+  outline: none;
+}
+/* custom button reset styles */
+.button {
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  border: 1px solid red;
+}
 
 .jumbotron {
   text-align: center;
@@ -63,6 +85,7 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  
 }
 
 .saveBtn i:hover {

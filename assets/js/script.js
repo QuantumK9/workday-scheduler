@@ -48,9 +48,10 @@ var events = [
   },
 ];
 
-// from moment with current time iterate through rows and change color accordingly
-var currentTime = 12; // temporary "time" for testing
-// take text input from textareas (along with id ? )
+// getting date and time in the right formats from moment.js
+var currentDateDisplay = moment().format("dddd Do MMMM YYYY");
+var currentTime = moment().format("H");
+// console.log(`Date: ${currentDateDisplay} and time: ${currentTime}`);
 
 //function that will display and change color of each slot based on time comparison with current into grey, red or green
 function addColorClassToElement(element, currentTime) {

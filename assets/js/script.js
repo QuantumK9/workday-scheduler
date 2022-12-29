@@ -80,7 +80,7 @@ $("document").ready(function () {
   if (storedEvents !== null) {
     events = storedEvents;
   }
-  // renderEvents(); doesn't exist yet
+  renderEvents(events);
 
   // let inputTdElements = $(".input-table-data");
   let inputTdElements = document.querySelectorAll(".input-table-data");
@@ -100,7 +100,19 @@ $(document).on("click", ".saveBtn", function (ev) {
   var inputTime = parseInt($(this).attr("data-time"));
   addInputToEvents(formInput, inputId);
   addEventsToLocalStorage(events);
+  renderEvents(events);
   // console.log(`data-id: ${inputId} and ${typeof inputId}`);
   // console.log(`data-time: ${inputTime}`);
   // getCityForecastAndDisplay(city);
 });
+
+function renderEvents(eventsArray) {
+  eventsArray.map((event) => {
+    var strEventId = event.id.toString();
+    $(`#${strEventId}`).val("");
+    $(`#${strEventId}`).val(event.event);
+    // console.log(event.id);
+    console.log(strEventId);
+    console.log(event.event);
+  });
+}

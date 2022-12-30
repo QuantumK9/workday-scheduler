@@ -73,6 +73,7 @@ $("document").ready(function () {
 // event listener on all save buttons
 $(document).on("click", ".saveBtn", function (ev) {
   ev.preventDefault();
+  console.log("button clicked");
   var formInput = $(this)[0].form.childNodes[1].value.trim();
   var inputId = parseInt($(this).attr("data-id"));
   addInputToEvents(formInput, inputId);

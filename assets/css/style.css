@@ -2,37 +2,14 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
-}
-
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
-}
-.text-area {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
-  /* custom */
-  width: 100%;
-  /* margin: 0 auto; */
-}
-
-.text-area:focus {
-  outline: none;
-}
-/* custom button reset styles */
-.button {
-  padding: 0 !important;
-  margin: 0 !important;
   
-  border: 1px solid red;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 1px;
+  max-width:690px;
+  margin: 0 auto;
 }
 
 .jumbotron {
@@ -49,19 +26,20 @@ textarea {
 
 .time-block {
   text-align: center;
-  border-radius: 15px;
 }
 
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
-}
-
-.hour {
-  background-color: #ffffff;
+.text-area {
+  background: transparent;
+  border: none;
+  resize: none;
   color: #000000;
-  border-top: 1px dashed #000000;
+  border-left: 1px solid black;
+  padding: 18px;
+  width: 100%;  
+}
+
+.text-area:focus {
+  outline: none;
 }
 
 .past {
@@ -79,13 +57,26 @@ textarea {
   color: white;
 }
 
+/* for td .button - override bootstrap */
+.button {
+  padding: 0 !important;
+  border: none !important;
+}
+
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   background-color: #06aed5;
   color: white;
-  
+  padding: 10px;
+} 
+
+.saveBtn i {
+  font-size: 20px;
+  padding: 15px;
 }
 
 .saveBtn i:hover {
